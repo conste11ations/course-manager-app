@@ -40,9 +40,9 @@ class Course extends Component {
   validate(values) {
     let errors = {};
     if (!values.description) {
-      errors.description = 'Enter a Description';
+      errors.description = 'Enter a description';
     } else if (values.description.length < 5) {
-      errors.description = 'Enter atleast 5 Characters in Description';
+      errors.description = 'Enter a minimum of 5 characters in the description';
     }
 
     return errors;
@@ -63,6 +63,8 @@ class Course extends Component {
             enableReinitialize={true}>
             {
               (props) => (
+                <>
+                <ErrorMessage name="description" component="div" className="alert alert-danger" />
                 <Form>
                   <fieldset className="form-group">
                     <label>Id</label>
@@ -74,6 +76,7 @@ class Course extends Component {
                   </fieldset>
                   <button className="btn btn-success" type="submit">Save</button>
                 </Form>
+                </>
               )
             }
           </Formik>
