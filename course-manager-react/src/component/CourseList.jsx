@@ -24,7 +24,6 @@ class CourseList extends Component {
     CourseDataService.retrieveAllCourses(INSTRUCTOR)//HARDCODED
       .then(
         response => {
-          //console.log(response);
           this.setState({ courses: response.data })
         }
       )
@@ -42,7 +41,7 @@ class CourseList extends Component {
   }
 
   addCourseClicked() {
-    this.props.history.push(`/courses/-1`)
+    this.props.history.push(`/courses/new`)
   }
 
   updateCourseClicked(id) {
@@ -73,8 +72,8 @@ class CourseList extends Component {
                     <tr key={course.id}>
                       <td>{course.id}</td>
                       <td>{course.description}</td>
-                      <td><button className="btn btn-success" onClick={() => this.updateCourseClicked(course.id)}>Update</button></td>
-                      <td><button className="btn btn-warning" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
+                      <td><button className="btn btn-warning" onClick={() => this.updateCourseClicked(course.id)}>Update</button></td>
+                      <td><button className="btn btn-danger" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
                     </tr>
                 )
               }

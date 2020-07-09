@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class CourseResource {
 
 	@Autowired
-	private CoursesHardcodedService courseManagementService;
+	private CourseList courseManagementService;
 
 	@GetMapping("/instructors/{username}/courses")
 	public List<Course> getAllCourses(@PathVariable String username) {
