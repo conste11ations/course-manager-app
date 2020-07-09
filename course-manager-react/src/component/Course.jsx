@@ -35,8 +35,25 @@ class Course extends Component {
     return (
       <>
         <h3>Course</h3>
-        <div>{id}</div>
-        <div>{description}</div>
+        <div className="container">
+          <Formik initialValues={{ id, description }}>
+            {
+              (props) => (
+                <Form>
+                  <fieldset className="form-group">
+                    <label>Id</label>
+                    <Field className="form-control" type="text" name="id" disabled />
+                  </fieldset>
+                  <fieldset className="form-group">
+                    <label>Description</label>
+                    <Field className="form-control" type="text" name="description" />
+                  </fieldset>
+                  <button className="btn btn-success" type="submit">Save</button>
+                </Form>
+              )
+            }
+          </Formik>
+        </div>
       </>
     )
   }
