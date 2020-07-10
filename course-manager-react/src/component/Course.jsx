@@ -34,7 +34,23 @@ class Course extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    let username = INSTRUCTOR;
+
+    let course = {
+      id: this.state.id,
+      description: values.description,
+//      targetDate: values.targetDate
+    }
+
+    if (this.state.id === -1) {
+      CourseDataService.createCourse(username, course)
+        .then(() => this.props.history.push('/courses'))
+    } else {
+      CourseDataService.updateCourse(username, this.state.id, course)
+        .then(() => this.props.history.push('/courses'))
+    }
+
+
   }
 
   validate(values) {
@@ -64,18 +80,18 @@ class Course extends Component {
             {
               (props) => (
                 <>
-                <ErrorMessage name="description" component="div" className="alert alert-danger" />
-                <Form>
-                  <fieldset className="form-group">
-                    <label>Id</label>
-                    <Field className="form-control" type="text" name="id" disabled />
-                  </fieldset>
-                  <fieldset className="form-group">
-                    <label>Description</label>
-                    <Field className="form-control" type="text" name="description" />
-                  </fieldset>
-                  <button className="btn btn-success" type="submit">Save</button>
-                </Form>
+                  <ErrorMessage name="description" component="div" className="alert alert-danger" />
+                  <Form>
+                    <fieldset className="form-group">
+                      <label>Id</label>
+                      <Field className="form-control" type="text" name="id" disabled />
+                    </fieldset>
+                    <fieldset className="form-group">
+                      <label>Description</label>
+                      <Field className="form-control" type="text" name="description" />
+                    </fieldset>
+                    <button className="btn btn-success" type="submit">Save</button>
+                  </Form>
                 </>
               )
             }

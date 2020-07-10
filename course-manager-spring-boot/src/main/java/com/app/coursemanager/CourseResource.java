@@ -59,9 +59,6 @@ public class CourseResource {
 
 		Course createdCourse = courseManagementService.save(course);
 
-		// Location
-		// Get current resource url
-		/// {id}
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdCourse.getId())
 				.toUri();
 
