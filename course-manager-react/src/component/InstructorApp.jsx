@@ -9,7 +9,6 @@ class InstructorApp extends Component {
       <Router>
         <>
           <h1>Instructor Application</h1>
-          {/*<CourseList />*/}
           <Switch>
             <Route path="/" exact component={CourseList} />
             <Route path="/courses" exact component={CourseList} />

@@ -33,7 +33,7 @@ class CourseList extends Component {
     CourseDataService.deleteCourse(INSTRUCTOR, id)
       .then(
         response => {
-          this.setState({ message: `Delete of course ${id} successful` })
+          this.setState({ message: `Successfully deleted course ${id}.` })
           this.refreshCourses()
         }
       )
@@ -41,11 +41,10 @@ class CourseList extends Component {
   }
 
   addCourseClicked() {
-    this.props.history.push(`/courses/-1`)
+    this.props.history.push(`/courses/new`)
   }
 
   updateCourseClicked(id) {
-    console.log('update ' + id)
     this.props.history.push(`/courses/${id}`)
   }
 
@@ -88,4 +87,4 @@ class CourseList extends Component {
   }
 }
 
-export default CourseList
+export default CourseList;

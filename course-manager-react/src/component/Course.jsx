@@ -9,7 +9,7 @@ class Course extends Component {
     super(props);
 
     this.state = {
-      id: this.props.match.params.id,
+      id: this.props.match.params.id === 'new' ? -1 : this.props.match.params.id,
       description: ''
     };
 
@@ -20,10 +20,7 @@ class Course extends Component {
 
   componentDidMount() {
 
-    console.log(this.state.id);
-
-    // eslint-disable-next-line
-    if (this.state.id == '-1') {
+    if (this.state.id === -1) {
       return;
     }
 
@@ -38,8 +35,7 @@ class Course extends Component {
 
     let course = {
       id: this.state.id,
-      description: values.description,
-//      targetDate: values.targetDate
+      description: values.description
     }
 
     if (this.state.id === -1) {
@@ -67,11 +63,12 @@ class Course extends Component {
 
   render() {
     let { description, id } = this.state;
+    const parsedId = id;
     return (
       <>
         <h3>Course</h3>
         <div className="container">
-          <Formik initialValues={{ id, description }}
+          <Formik initialValues={{ parsedId, description }}
             onSubmit={this.onSubmit}
             validateOnChange={false}
             validateOnBlur={false}
@@ -84,7 +81,7 @@ class Course extends Component {
                   <Form>
                     <fieldset className="form-group">
                       <label>Id</label>
-                      <Field className="form-control" type="text" name="id" disabled />
+                      <Field className="form-control" type="text" name="parsedId" disabled />
                     </fieldset>
                     <fieldset className="form-group">
                       <label>Description</label>
