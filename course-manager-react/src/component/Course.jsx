@@ -12,10 +12,8 @@ class Course extends Component {
       id: this.props.match.params.id === 'new' ? -1 : this.props.match.params.id,
       description: ''
     };
-
     this.onSubmit = this.onSubmit.bind(this);
     this.validate = this.validate.bind(this);
-
   }
 
   componentDidMount() {
@@ -45,8 +43,11 @@ class Course extends Component {
       CourseDataService.updateCourse(username, this.state.id, course)
         .then(() => this.props.history.push('/courses'))
     }
+  };
 
-
+  onCancel() {
+    console.log("hi")
+    console.log();
   }
 
   validate(values) {
@@ -56,9 +57,7 @@ class Course extends Component {
     } else if (values.description.length < 5) {
       errors.description = 'Enter a minimum of 5 characters in the description';
     }
-
     return errors;
-
   }
 
   render() {
@@ -70,6 +69,7 @@ class Course extends Component {
         <div className="container">
           <Formik initialValues={{ parsedId, description }}
             onSubmit={this.onSubmit}
+            onCancel={this.onCancel}
             validateOnChange={false}
             validateOnBlur={false}
             validate={this.validate}
@@ -87,7 +87,11 @@ class Course extends Component {
                       <label>Description</label>
                       <Field className="form-control" type="text" name="description" />
                     </fieldset>
-                    <button className="btn btn-success" type="submit">Save</button>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <button className="btn btn-success" style={{ margin: '10px' }} type="submit">Save</button>
+                      <button className="btn btn-info" style={{ margin: '10px' }} type="reset">Reset</button>
+                      <button className="btn btn-warning" style={{ margin: '10px' }} type="button" onClick={() => this.onCancel()}>Cancel</button>
+                    </div>
                   </Form>
                 </>
               )
