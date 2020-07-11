@@ -38,16 +38,15 @@ class Course extends Component {
 
     if (this.state.id === -1) {
       CourseDataService.createCourse(username, course)
-        .then(() => this.props.history.push('/courses'))
+        .then(() => this.props.history.push('/courses'));
     } else {
       CourseDataService.updateCourse(username, this.state.id, course)
-        .then(() => this.props.history.push('/courses'))
+        .then(() => this.props.history.push('/courses'));
     }
   };
 
   onCancel() {
-    console.log("hi")
-    console.log();
+    this.props.history.push('/courses');
   }
 
   validate(values) {
@@ -69,7 +68,6 @@ class Course extends Component {
         <div className="container">
           <Formik initialValues={{ parsedId, description }}
             onSubmit={this.onSubmit}
-            onCancel={this.onCancel}
             validateOnChange={false}
             validateOnBlur={false}
             validate={this.validate}

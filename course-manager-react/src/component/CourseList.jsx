@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import CourseDataService from '../service/CourseDataService';
 
 const INSTRUCTOR = 'in28minutes'
@@ -47,7 +47,6 @@ class CourseList extends Component {
   updateCourseClicked(id) {
     this.props.history.push(`/courses/${id}`)
   }
-
 
   render() {
     return (
